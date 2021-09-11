@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.4.1)
 project(HeleZhe_JniBind C CXX)
 
-
-# Define variables required for work of "library_luajit.cmake" code
+# =========================================================================================================
+#                         LuaJIT build code BEGIN
+# =========================================================================================================
 
 include(ExternalProject)
 
@@ -52,6 +53,14 @@ endif()
 # Include the "library_luajit.cmake" code
 include(library_luajit.cmake)
 
+# =========================================================================================================
+#                         LuaJIT build code END
+# =========================================================================================================
+
+
+
+# Now, code of project itself:
+
 add_library(helezhe-jni SHARED
     src/main/cpp/helezhe-jni.c
 )
@@ -59,24 +68,19 @@ add_dependencies(helezhe-jni LuaJIT_local)
 
 target_include_directories(helezhe-jni PUBLIC
     src/main/cpp/include
+# INCLUDE DIRECTORY THAT LEADS TO LUAJIT:
     ${DEPENDENCIES_INSTALL_DIR}/include
+# =======================================
 )
 
-find_library(
-    # Sets the name of the path variable.
-    log-lib
-    # Specifies the name of the NDK library that
-    # you want CMake to locate.
-    log
-)
+find_library(log-lib log)
 
-target_link_libraries(
-    # Specifies the target library.
-    helezhe-jni
+target_link_libraries(helezhe-jni
     # Links the target library to the log library
     # included in the NDK.
     ${log-lib}
-    OpenSLES
-    # LINK the built LuaJit here
+# =========================================================================================================
+#    LINK the built LuaJit here
     ${libLuaJit_Lib}
+# =========================================================================================================
 )
