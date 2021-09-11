@@ -16,7 +16,7 @@ Java_ru_wohlsoft_helezhe_MainActivity_stringFromJNI(
     jclass instance
 )
 {
-    char *z;
+    const char *z;
     (void)instance;
     lua_getglobal(L, "heleCall");
     lua_pcall(L, 0, 1, 0);
