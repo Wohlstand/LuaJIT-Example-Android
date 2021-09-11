@@ -1,0 +1,3 @@
+[submodule "libs/luajit"]
+	path = libs/luajit
+	url = https://github.com/WohlSoft/LuaJIT.git
