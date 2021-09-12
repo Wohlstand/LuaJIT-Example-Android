@@ -13,8 +13,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
         externalNativeBuild {
             cmake {
                 cppFlags ""
@@ -35,6 +33,7 @@ android {
             jniDebuggable true
             renderscriptDebuggable false
             minifyEnabled false
+            // This thing will allow you to install both debug build (made and installed through Android Studio) and release (build signed APK) on the same device
             applicationIdSuffix '.debug'
             versionNameSuffix '-DEVDEBUG'
         }
@@ -53,11 +52,8 @@ android {
 }
 
 dependencies {
-
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    testImplementation 'junit:junit:4.13.2'
 }
